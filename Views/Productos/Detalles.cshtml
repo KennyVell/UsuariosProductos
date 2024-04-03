@@ -1,0 +1,41 @@
+@{
+    ViewData["Title"] = "Detalles";
+}
+
+<div class="container mt-5">
+    <h1>Detalles del producto</h1>
+    <div class="row mt-3">
+        <div class="col">
+            <a class="d-flex float-start btn btn-primary" asp-controller="Productos" asp-action="Index">Regresar</a>
+        </div>
+    </div>
+    <table class="table mt-3">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Imagen</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Descripción</th>
+                <th scope="col">Precio</th>
+                <th scope="col">Cantidad</th>
+                <th scope="col">Fecha de vencimiento</th>
+                <th scope="col">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="align-middle">
+                <th scope="row">@Model.Id</th>
+                <td><img width="100px" src="@Model.ImagenURL" alt="Producto"></td>
+                <td>@Model.Nombre</td>
+                <td style="width: 300px;">@Model.Descripcion</td>
+                <td>$@Model.Precio</td>
+                <td>@Model.Cantidad</td>
+                <td>@Model.FechaVencimiento.ToString("dd/MM/yyyy")</td>   
+                <td>
+                    <a class="btn btn-sm btn-warning" asp-controller="Productos" asp-action="Detalles" asp-route-id="@Model.Id">Editar</a>
+                    <a class="btn btn-sm btn-danger" asp-controller="Productos" asp-action="Detalles" asp-route-id="@Model.Id">Eliminar</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

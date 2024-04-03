@@ -1,0 +1,48 @@
+@{
+    ViewData["Title"] ="Productos";
+}
+
+<div class="container mt-5">
+    <h1>Lista de productos</h1>
+    <div class="row mt-3">
+        <div class="col">
+            <a class="d-flex float-start btn btn-primary" >Crear producto</a><!--asp-controller="Users" asp-action="Crear"-->
+            <form class="d-flex float-end" role="search">
+                <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Buscar</button>
+            </form>
+        </div>
+    </div>
+    <table class="table mt-3">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Imagen</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Descripción</th>
+                <th scope="col">Precio</th>
+                <th scope="col">Cantidad</th>
+                <th scope="col">Fecha de vencimiento</th>
+                <th scope="col">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var producto in Model) {
+                <tr class="align-middle">
+                    <th scope="row">@producto.Id</th>
+                    <td><img width="100px" src="@producto.ImagenURL" alt="Producto"></td>
+                    <td>@producto.Nombre</td>
+                    <td style="width: 300px;">@producto.Descripcion</td>
+                    <td>$@producto.Precio</td>
+                    <td>@producto.Cantidad</td>
+                    <td>@producto.FechaVencimiento.ToString("dd/MM/yyyy")</td>   
+                    <td>
+                        <a class="btn btn-sm btn-primary" asp-controller="Productos" asp-action="Detalles" asp-route-id="@producto.Id">Detalles</a>
+                        <a class="btn btn-sm btn-warning" asp-controller="Productos" asp-action="Detalles" asp-route-id="@producto.Id">Editar</a>
+                        <a class="btn btn-sm btn-danger" asp-controller="Productos" asp-action="Detalles" asp-route-id="@producto.Id">Eliminar</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
