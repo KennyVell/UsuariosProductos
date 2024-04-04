@@ -41,7 +41,7 @@
                         <td>@Model.Cantidad</td>
                         <td>@Model.FechaVencimiento.ToString("dd/MM/yyyy")</td>   
                         <td>
-                            <a class="btn btn-sm btn-warning" asp-controller="Productos" asp-action="Detalles" asp-route-id="@Model.Id">Editar</a>
+                            <a class="btn btn-sm btn-warning" asp-controller="Productos" asp-action="Editar" asp-route-id="@Model.Id">Editar</a>
                             <a class="btn btn-sm btn-danger" asp-controller="Productos" asp-action="Eliminar" asp-route-id="@Model.Id">Eliminar</a>
                         </td>
                     </tr>

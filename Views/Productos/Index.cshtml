@@ -12,7 +12,7 @@
 
     <div class="row mt-2">
         <div class="col">
-            <a class="d-flex float-start btn btn-primary" >Crear producto</a><!--asp-controller="Users" asp-action="Crear"-->
+            <a class="d-flex float-start btn btn-primary" asp-controller="Productos" asp-action="Crear">Crear producto</a>
             <form class="d-flex float-end" role="search">
                 <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
                 <button class="btn btn-outline-success" type="submit">Buscar</button>
@@ -47,7 +47,7 @@
                             <td>@producto.FechaVencimiento.ToString("dd/MM/yyyy")</td>   
                             <td>
                                 <a class="btn btn-sm btn-primary" asp-controller="Productos" asp-action="Detalles" asp-route-id="@producto.Id">Detalles</a>
-                                <a class="btn btn-sm btn-warning" asp-controller="Productos" asp-action="Detalles" asp-route-id="@producto.Id">Editar</a>
+                                <a class="btn btn-sm btn-warning" asp-controller="Productos" asp-action="Editar" asp-route-id="@producto.Id">Editar</a>
                                 <a class="btn btn-sm btn-danger" asp-controller="Productos" asp-action="Eliminar" asp-route-id="@producto.Id">Eliminar</a>
                             </td>
                         </tr>

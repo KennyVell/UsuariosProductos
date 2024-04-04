@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/home/riwip5-005/Documents/kenneth no borrar/UsuariosProductos/UsuariosProductos.csproj": {}
+    "/home/riwip5-041/Documents/Ejercicios/UsuariosProductos/UsuariosProductos.csproj": {}
   },
   "projects": {
-    "/home/riwip5-005/Documents/kenneth no borrar/UsuariosProductos/UsuariosProductos.csproj": {
+    "/home/riwip5-041/Documents/Ejercicios/UsuariosProductos/UsuariosProductos.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/riwip5-005/Documents/kenneth no borrar/UsuariosProductos/UsuariosProductos.csproj",
+        "projectUniqueName": "/home/riwip5-041/Documents/Ejercicios/UsuariosProductos/UsuariosProductos.csproj",
         "projectName": "UsuariosProductos",
-        "projectPath": "/home/riwip5-005/Documents/kenneth no borrar/UsuariosProductos/UsuariosProductos.csproj",
-        "packagesPath": "/home/riwip5-005/.nuget/packages/",
-        "outputPath": "/home/riwip5-005/Documents/kenneth no borrar/UsuariosProductos/obj/",
+        "projectPath": "/home/riwip5-041/Documents/Ejercicios/UsuariosProductos/UsuariosProductos.csproj",
+        "packagesPath": "/home/riwip5-041/.nuget/packages/",
+        "outputPath": "/home/riwip5-041/Documents/Ejercicios/UsuariosProductos/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/riwip5-005/.nuget/NuGet/NuGet.Config"
+          "/home/riwip5-041/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"

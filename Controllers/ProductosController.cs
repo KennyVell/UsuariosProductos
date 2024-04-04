@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using UsuariosProductos.Data;
+using UsuariosProductos.Models;
 namespace UsuariosProductos.Controllers;
 
 public class ProductosController : Controller {
@@ -14,6 +15,34 @@ public class ProductosController : Controller {
 
     public async Task<IActionResult> Detalles(int id) {
         return View(await _context.Productos.FirstOrDefaultAsync(m => m.Id == id));
+    }
+
+    public IActionResult Crear(){
+            return View();
+    }
+
+    [HttpPost]
+    public IActionResult Crear(Producto p){
+        if(ModelState.IsValid){
+            _context.Productos.Add(p);
+            _context.SaveChanges();
+            return RedirectToAction("Index");
+        }
+        return View(p); 
+    }
+
+    public IActionResult Editar(int id){
+       return View(_context.Productos.FirstOrDefault(m => m.Id == id));
+    }
+
+    [HttpPost]
+    public IActionResult Editar(Producto p){
+        if(ModelState.IsValid){
+            _context.Productos.Update(p);
+            _context.SaveChanges();
+            return RedirectToAction("Index");
+        }
+        return View(p);
     }
 
     public async Task<IActionResult> Eliminar(int id) {

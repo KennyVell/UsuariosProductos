@@ -1,5 +1,5 @@
 @{
-    ViewData["Title"] = "Crear usuario";
+    ViewData["Title"] = "Editar usuario";
 }
 @model Usuario
 
@@ -7,7 +7,7 @@
 
     <div class="row">
         <div class="col">
-            <h1>Crear usuario</h1>
+            <h1>Editar usuario</h1>
         </div>
     </div>
 
@@ -19,7 +19,7 @@
 
     <div class="row mt-3">
         <div class="col">
-            <form asp-action="Crear" method="post">
+            <form asp-action="Editar" method="post">
                 <div class="form-group">
                     <label asp-for="Nombres">Nombres:</label>
                     <input asp-for="Nombres" class="form-control" />
@@ -50,8 +50,8 @@
                     <input asp-for="FechaNacimiento" class="form-control" />
                     <span asp-validation-for="FechaNacimiento" class="text-danger"></span>
                 </div>
-                <button class="btn btn-primary mt-3">Crear nuevo usuario</button>
-            </form>    
+                <button class="btn btn-primary mt-3">Actualizar usuario</button>
+            </form>   
         </div>
     </div>
 

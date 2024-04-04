@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using UsuariosProductos.Data;
 using UsuariosProductos.Models;
 namespace UsuariosProductos.Controllers;
@@ -23,12 +24,34 @@ public class UsuariosController : Controller {
 
     [HttpPost]
     public IActionResult Crear(Usuario u){
+
+        if(ModelState.IsValid){
         //Agregar el usuario al DbSet
         _context.Usuarios.Add(u);
         //Guardamos los cambios realizados en el contexto de la base de datos
         _context.SaveChanges();
         //Nos redirigimos a otra vista
         return RedirectToAction("Index");
+
+        }else{
+            return View(u);
+        }
+    }
+
+    public async Task<IActionResult> Editar(int id){
+        return View(await _context.Usuarios.FirstOrDefaultAsync(m => m.Id == id));
+    }
+
+    [HttpPost]
+    public IActionResult Editar(Usuario u){
+
+        if(ModelState.IsValid){
+        _context.Usuarios.Update(u);
+        _context.SaveChanges();
+        return RedirectToAction("Index");
+
+        }
+        return View(u);
     }
 
     public async Task<IActionResult> Eliminar(int id) {
