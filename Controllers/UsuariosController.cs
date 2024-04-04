@@ -12,7 +12,18 @@ public class UsuariosController : Controller {
         return View(await _context.Usuarios.ToListAsync()); 
     }
 
-    public async Task<IActionResult> Detalles(int? id) {
+    public async Task<IActionResult> Detalles(int id) {
         return View(await _context.Usuarios.FirstOrDefaultAsync(m => m.Id == id));
+    }
+
+    public async Task<IActionResult> Eliminar(int id) {
+        //Buscamos en la base de datos
+        var usuario = await _context.Usuarios.FindAsync(id);
+        //Elimina un objeto del DbSet Usuarios que está dentro del contexto de la base de datos
+        _context.Usuarios.Remove(usuario);
+        //Es responsable de guardar los cambios realizados en el contexto de la base de datos de forma asíncrona.       
+        await _context.SaveChangesAsync();
+        //Nos redirigimos a otra vista
+        return RedirectToAction("Index");
     }
 }

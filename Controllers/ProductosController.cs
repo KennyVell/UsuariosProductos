@@ -12,7 +12,18 @@ public class ProductosController : Controller {
         return View(await _context.Productos.ToListAsync()); 
     }
 
-    public async Task<IActionResult> Detalles(int? id) {
+    public async Task<IActionResult> Detalles(int id) {
         return View(await _context.Productos.FirstOrDefaultAsync(m => m.Id == id));
+    }
+
+    public async Task<IActionResult> Eliminar(int id) {
+        //Buscamos en la base de datos
+        var producto = await _context.Productos.FindAsync(id);
+        //Elimina un objeto del DbSet Productos que está dentro del contexto de la base de datos
+        _context.Productos.Remove(producto);
+        //Es responsable de guardar los cambios realizados en el contexto de la base de datos de forma asíncrona.       
+        await _context.SaveChangesAsync();
+        //Nos redirigimos a otra vista
+        return RedirectToAction("Index");
     }
 }
