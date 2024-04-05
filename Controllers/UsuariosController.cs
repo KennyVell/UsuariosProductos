@@ -10,8 +10,13 @@ public class UsuariosController : Controller {
     public UsuariosController(BaseContext context) {
         _context = context;
     }
-    public async Task<IActionResult> Index() {
-        return View(await _context.Usuarios.ToListAsync()); 
+    public async Task<IActionResult> Index(string search) {
+        var usuarios = from usuario in _context.Usuarios select usuario;
+        if(!string.IsNullOrEmpty(search)){
+            usuarios = usuarios.Where(m => m.Nombres.Equals(search));
+            return View(await usuarios.ToListAsync());
+        }
+        return View(await usuarios.ToListAsync());
     }
 
     public async Task<IActionResult> Detalles(int id) {
@@ -23,13 +28,13 @@ public class UsuariosController : Controller {
     }
 
     [HttpPost]
-    public IActionResult Crear(Usuario u){
+    public async Task<IActionResult> Crear(Usuario u){
 
         if(ModelState.IsValid){
         //Agregar el usuario al DbSet
         _context.Usuarios.Add(u);
         //Guardamos los cambios realizados en el contexto de la base de datos
-        _context.SaveChanges();
+        await _context.SaveChangesAsync();
         //Nos redirigimos a otra vista
         return RedirectToAction("Index");
 
@@ -43,13 +48,11 @@ public class UsuariosController : Controller {
     }
 
     [HttpPost]
-    public IActionResult Editar(Usuario u){
-
+    public async Task<IActionResult> Editar(Usuario u){
         if(ModelState.IsValid){
-        _context.Usuarios.Update(u);
-        _context.SaveChanges();
-        return RedirectToAction("Index");
-
+            _context.Usuarios.Update(u);
+            await _context.SaveChangesAsync();
+            return RedirectToAction("Index");
         }
         return View(u);
     }

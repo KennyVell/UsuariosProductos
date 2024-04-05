@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using UsuariosProductos.Data;
 using UsuariosProductos.Models;
+using System.Linq.Expressions;
 namespace UsuariosProductos.Controllers;
 
 public class ProductosController : Controller {
@@ -9,8 +10,13 @@ public class ProductosController : Controller {
     public ProductosController(BaseContext context) {
         _context = context;
     }
-    public async Task<IActionResult> Index() {
-        return View(await _context.Productos.ToListAsync()); 
+    public async Task<IActionResult> Index(string search) {
+        var productos = from producto in _context.Productos select producto;
+        if(!string.IsNullOrEmpty(search)){
+            productos = productos.Where(p => p.Nombre.Contains(search));
+            return View(await productos.ToListAsync());
+        }
+        return View(await productos.ToListAsync());
     }
 
     public async Task<IActionResult> Detalles(int id) {
@@ -22,24 +28,24 @@ public class ProductosController : Controller {
     }
 
     [HttpPost]
-    public IActionResult Crear(Producto p){
+    public async Task<IActionResult> Crear(Producto p){
         if(ModelState.IsValid){
             _context.Productos.Add(p);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
             return RedirectToAction("Index");
         }
         return View(p); 
     }
 
-    public IActionResult Editar(int id){
-       return View(_context.Productos.FirstOrDefault(m => m.Id == id));
+    public async Task<IActionResult> Editar(int id){
+       return View(await _context.Productos.FirstOrDefaultAsync(m => m.Id == id));
     }
 
     [HttpPost]
-    public IActionResult Editar(Producto p){
+    public async Task<IActionResult> Editar(Producto p){
         if(ModelState.IsValid){
             _context.Productos.Update(p);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
             return RedirectToAction("Index");
         }
         return View(p);
