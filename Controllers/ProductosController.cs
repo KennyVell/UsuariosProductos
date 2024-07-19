@@ -55,7 +55,7 @@ public class ProductosController : Controller {
         //Buscamos en la base de datos
         var producto = await _context.Productos.FindAsync(id);
         //Elimina un objeto del DbSet Productos que está dentro del contexto de la base de datos
-        _context.Productos.Remove(producto);
+        _context.Productos.Remove(producto!);
         //Es responsable de guardar los cambios realizados en el contexto de la base de datos de forma asíncrona.       
         await _context.SaveChangesAsync();
         //Nos redirigimos a otra vista
